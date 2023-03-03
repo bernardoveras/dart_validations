@@ -1,6 +1,7 @@
+import 'package:test/test.dart';
+
 import 'package:dart_validations/validation/composites/composites.dart';
 import 'package:dart_validations/validation/protocols/protocols.dart';
-import 'package:test/test.dart';
 
 import '../../mocks/validation/composites/composites.mocks.dart';
 

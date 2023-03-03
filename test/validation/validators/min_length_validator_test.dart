@@ -1,6 +1,7 @@
-import 'package:dart_validations/validation/validators/validators.dart';
 import 'package:faker/faker.dart';
 import 'package:test/test.dart';
+
+import 'package:dart_validations/validation/validators/validators.dart';
 
 void main() {
   late MinLengthValidator sut;
