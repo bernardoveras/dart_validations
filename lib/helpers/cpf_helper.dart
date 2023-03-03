@@ -42,15 +42,15 @@ class CpfHelper extends LegalDocumentHelper {
   int verifierDigit(String document) {
     var numbers = document.split('').map((number) => int.parse(number, radix: 10)).toList();
 
-    var modulus = numbers.length + 1;
+    final modulus = numbers.length + 1;
 
-    var multiplied = <int>[];
+    final multiplied = <int>[];
 
     for (var i = 0; i < numbers.length; i++) {
       multiplied.add(numbers[i] * (modulus - i));
     }
 
-    var mod = multiplied.reduce((buffer, number) => buffer + number) % 11;
+    final mod = multiplied.reduce((buffer, number) => buffer + number) % 11;
 
     return (mod < 2 ? 0 : 11 - mod);
   }
