@@ -19,7 +19,7 @@ void main() {
     expect(sut.validate('88.791.131/0001-85'), true);
   });
 
-test('Should return false if stripped random CNPJ is invalid', () {
+  test('Should return false if stripped random CNPJ is invalid', () {
     final randomInvalidCnpj = '23474170000173';
     expect(sut.validate(randomInvalidCnpj), false);
   });
