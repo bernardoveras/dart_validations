@@ -24,7 +24,7 @@ void main() {
     expect(error, isNull);
   });
 
-  test('Should return null if email is invalid', () {
+  test('Should return error message if email is invalid', () {
     final error = sut.validate('incorrect_email');
     expect(error, 'Campo inválido');
   });
