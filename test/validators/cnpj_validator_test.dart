@@ -1,4 +1,3 @@
-import 'package:dart_validations/helpers/cnpj_helper.dart';
 import 'package:test/test.dart';
 
 import 'package:dart_validations/validators/validators.dart';
@@ -20,20 +19,25 @@ void main() {
     expect(sut.validate('88.791.131/0001-85'), true);
   });
 
-  test('Should return false if value is blacklisted', () {
-    final cnpjBlacklisted = CnpjHelper().blackList.first;
+  test('Should return false if stripped CNPJ is blacklisted', () {
+    final cnpjBlacklisted = '00000000000000';
     expect(sut.validate(cnpjBlacklisted), false);
   });
 
-  test('Should return false if value is empty', () {
+  test('Should return false if formatted CNPJ is blacklisted', () {
+    final cnpjBlacklisted = '00.000.000/0000-00';
+    expect(sut.validate(cnpjBlacklisted), false);
+  });
+
+  test('Should return false if CNPJ is empty', () {
     expect(sut.validate(''), false);
   });
 
-  test('Should return false if value is empty string', () {
+  test('Should return false if CNPJ is empty string', () {
     expect(sut.validate('  '), false);
   });
 
-  test('Should return false if value is null', () {
+  test('Should return false if CNPJ is null', () {
     expect(sut.validate(null), false);
   });
 }
