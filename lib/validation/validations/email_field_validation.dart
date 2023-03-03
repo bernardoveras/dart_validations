@@ -23,7 +23,7 @@ class EmailFieldValidation extends Equatable implements FieldValidation {
   ValidationError? validate(Map input) {
     final bool isValid = _emailValidator.validate(input[fieldName]);
 
-    // Retorna a mensagem de erro se o e-mail for inválido, ou null se for válido.
+    // Retorna a mensagem de erro se o valor for inválido, ou null se for válido.
     return isValid ? null : ValidationError.invalidField;
   }
 }

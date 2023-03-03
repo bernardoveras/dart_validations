@@ -6,11 +6,11 @@ import 'package:dart_validations/validation/validations/validations.dart';
 
 void main() {
   late MinLengthFieldValidation sut;
-  late int minSize;
+  late int minLength;
 
   setUp(() {
-    minSize = 7;
-    sut = MinLengthFieldValidation(fieldName: 'any_field', size: minSize);
+    minLength = 7;
+    sut = MinLengthFieldValidation(fieldName: 'any_field', length: minLength);
   });
 
   test('Should return error if value is empty', () {
@@ -21,15 +21,15 @@ void main() {
     expect(sut.validate({'any_field': null}), ValidationError.invalidField);
   });
 
-  test('Should return error if value is less than min size', () {
-    expect(sut.validate({'any_field': faker.randomGenerator.string(minSize - 1, min: 1)}), ValidationError.invalidField);
+  test('Should return error if value is less than min length', () {
+    expect(sut.validate({'any_field': faker.randomGenerator.string(minLength - 1, min: 1)}), ValidationError.invalidField);
   });
 
-  test('Should return null if value is equal than min size', () {
-    expect(sut.validate({'any_field': faker.randomGenerator.string(minSize, min: minSize)}), null);
+  test('Should return null if value is equal than min length', () {
+    expect(sut.validate({'any_field': faker.randomGenerator.string(minLength, min: minLength)}), null);
   });
 
-  test('Should return null if value is bigger than min size', () {
+  test('Should return null if value is bigger than min length', () {
     expect(sut.validate({'any_field': faker.randomGenerator.string(10, min: 6)}), null);
   });
 }

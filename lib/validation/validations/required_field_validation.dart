@@ -24,7 +24,7 @@ class RequiredFieldValidation extends Equatable implements FieldValidation {
     // Verifica se o valor do campo é nulo ou vazio
     final bool isValid = _requiredValidator.validate(input[fieldName]);
 
-    // Retorna null se o campo for válido
+    // Retorna a mensagem de erro se o valor for inválido, ou null se for válido.
     return isValid ? null : ValidationError.requiredField;
   }
 }
