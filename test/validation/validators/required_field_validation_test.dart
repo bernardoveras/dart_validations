@@ -2,7 +2,7 @@ import 'package:test/test.dart';
 
 abstract class FieldValidation {
   String get field;
-  String? validate(String value);
+  String? validate(String? value);
 }
 
 class RequiredFieldValidation implements FieldValidation {
@@ -12,8 +12,11 @@ class RequiredFieldValidation implements FieldValidation {
   RequiredFieldValidation(this.field);
 
   @override
-  String? validate(String value) {
-    if (value.isEmpty) return 'Campo obrigatório';
+  String? validate(String? value) {
+    final errorText = 'Campo obrigatório';
+
+    if (value == null || value.isEmpty) return errorText;
+
     return null;
   }
 }
@@ -33,6 +36,12 @@ void main() {
 
   test('Should return error if value is empty', () {
     final error = sut.validate('');
+
+    expect(error, 'Campo obrigatório');
+  });
+
+  test('Should return error if value is null', () {
+    final error = sut.validate(null);
 
     expect(error, 'Campo obrigatório');
   });
