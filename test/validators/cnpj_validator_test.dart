@@ -16,7 +16,7 @@ void main() {
 
   test('Should return true if formatted CNPJ is valid', () {
     // Disclaimer: This CNPJ was generated through the website "https://geradordecnpj.org/", we are not responsible for misuse.
-    expect(sut.validate('88.791.131/0001-85'), true);
+    expect(sut.validate('34.684.744/0001-94'), true);
   });
 
   test('Should return false if stripped random CNPJ is invalid', () {

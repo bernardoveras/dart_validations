@@ -2,6 +2,7 @@ import '../regex/regex.dart';
 
 abstract class LegalDocumentHelper {
   List<String> get blackList => [];
+  RegExp get formatRegex;
 
   bool validate(String? document);
 

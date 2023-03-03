@@ -18,6 +18,24 @@ class CpfHelper extends LegalDocumentHelper {
     '12345678909'
   ];
 
+  /// Uses regular expression to format the CPF.
+  ///
+  /// The [string] must only contain numbers.
+  ///
+  /// ```dart
+  /// final cpf = '86492661699';
+  /// final formattedCpf = cpf.replaceAllMapped(formatRegex, (Match m) => '${m[1]}.${m[2]}.${m[3]}-${m[4]}'); // 864.926.616-99
+  /// ```
+  @override
+  final RegExp formatRegex = RegExp(r'^(\d{3})(\d{3})(\d{3})(\d{2})$');
+
+  /// The [value] must only contain numbers.
+  ///
+  /// Use the `strip` method to remove special characters.
+  String _replaceFormatRegex(String value) {
+    return value.replaceAllMapped(formatRegex, (Match m) => '${m[1]}.${m[2]}.${m[3]}-${m[4]}');
+  }
+
   /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
@@ -39,8 +57,12 @@ class CpfHelper extends LegalDocumentHelper {
 
   @override
   String format(String document) {
-    // TODO: implement format
-    throw UnimplementedError();
+    // Return the same CPF if it is not a valid CPF.
+    if (!validate(document)) {
+      return document;
+    }
+
+    return _replaceFormatRegex(strip(document)!);
   }
 
   @override
