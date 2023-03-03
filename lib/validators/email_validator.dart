@@ -1,10 +1,10 @@
 import 'validators.dart';
 
-/// Classe responsável por validar se uma String é um e-mail válido.
+/// Class responsible for validating if a String is a valid email address.
 ///
-/// Utiliza uma expressão regular para verificar se o formato do e-mail é válido.
+/// Uses a regular expression to check if the email format is valid.
 ///
-/// Como usar:
+/// Example:
 /// ```dart
 /// final emailValidator = EmailValidator();
 /// final email = 'example@mail.com';
@@ -13,10 +13,10 @@ import 'validators.dart';
 class EmailValidator implements Validator<String> {
   final RegExp _emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
-  /// Valida se uma String é um e-mail válido.
+  /// Validates if a String is a valid email.
   ///
-  /// Retorna true caso o valor for nulo ou vazio ou se for um e-mail válido.
-  /// Caso contrário, retorna false.
+  /// Returns true if the value is null or empty or if it is a valid email address.
+  /// Otherwise, it returns false.
   @override
   bool validate(String? value) {
     final bool isValid = value == null || value.isEmpty || _emailRegex.hasMatch(value);
