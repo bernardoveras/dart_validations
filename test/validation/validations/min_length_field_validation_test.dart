@@ -9,7 +9,7 @@ void main() {
   late int minLength;
 
   setUp(() {
-    minLength = 7;
+    minLength = 5;
     sut = MinLengthFieldValidation(fieldName: 'any_field', length: minLength);
   });
 
@@ -30,6 +30,10 @@ void main() {
   });
 
   test('Should return null if value is bigger than min length', () {
-    expect(sut.validate({'any_field': faker.randomGenerator.string(10, min: 6)}), null);
+    final value = faker.randomGenerator.string(10, min: minLength);
+
+    print(value);
+
+    expect(sut.validate({'any_field': value}), null);
   });
 }

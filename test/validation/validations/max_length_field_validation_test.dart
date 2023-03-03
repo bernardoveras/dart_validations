@@ -9,7 +9,7 @@ void main() {
   late int maxLength;
 
   setUp(() {
-    maxLength = 7;
+    maxLength = 5;
     sut = MaxLengthFieldValidation(fieldName: 'any_field', length: maxLength);
   });
 

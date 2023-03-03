@@ -8,7 +8,7 @@ void main() {
   late int maxLength;
 
   setUp(() {
-    maxLength = 7;
+    maxLength = 5;
     sut = MaxLengthValidator(length: maxLength);
   });
 

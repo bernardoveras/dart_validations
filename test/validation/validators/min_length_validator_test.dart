@@ -29,6 +29,6 @@ void main() {
   });
 
   test('Should return true if value is bigger than min length', () {
-    expect(sut.validate(faker.randomGenerator.string(10, min: 6)), true);
+    expect(sut.validate(faker.randomGenerator.string(10, min: minLength)), true);
   });
 }
