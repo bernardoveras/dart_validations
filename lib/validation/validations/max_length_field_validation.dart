@@ -5,7 +5,7 @@ import '../protocols/protocols.dart';
 import '../validators/validators.dart';
 
 /// Classe responsável por validar se os campos ultrapassam um tamanho máximo.
-class MaxLengthValidation extends Equatable implements FieldValidation {
+class MaxLengthFieldValidation extends Equatable implements FieldValidation {
   /// Nome do campo a ser validado.
   @override
   final String fieldName;
@@ -18,7 +18,7 @@ class MaxLengthValidation extends Equatable implements FieldValidation {
   @override
   List<Object> get props => [fieldName];
 
-  MaxLengthValidation({
+  MaxLengthFieldValidation({
     required this.fieldName,
     required this.size,
   }) {

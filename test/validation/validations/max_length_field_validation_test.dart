@@ -5,12 +5,12 @@ import 'package:test/test.dart';
 import 'package:dart_validations/validation/validations/validations.dart';
 
 void main() {
-  late MaxLengthValidation sut;
+  late MaxLengthFieldValidation sut;
   late int maxSize;
 
   setUp(() {
     maxSize = 7;
-    sut = MaxLengthValidation(fieldName: 'any_field', size: maxSize);
+    sut = MaxLengthFieldValidation(fieldName: 'any_field', size: maxSize);
   });
 
   test('Should return null if value is empty', () {
