@@ -11,12 +11,15 @@ class ValidationComposite implements Validation {
   ///
   /// Retorna `null` se todas as validações forem válidas ou uma `mensagem de erro` caso contrário.
   @override
-  ValidationError? validate({required String fieldName, required String? value}) {
+  ValidationError? validate({
+    required String fieldName,
+    required Map input,
+  }) {
     ValidationError? error;
 
     // Itera sobre as validações de campo que se aplicam ao campo especificado.
     for (final validation in validations.where((v) => v.fieldName == fieldName)) {
-      error = validation.validate(value);
+      error = validation.validate(input);
 
       if (error != null) {
         return error;

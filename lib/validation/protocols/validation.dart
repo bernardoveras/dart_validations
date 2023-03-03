@@ -8,5 +8,8 @@ enum ValidationError {
 }
 
 abstract class Validation {
-  ValidationError? validate({required String fieldName, required String? value});
+  ValidationError? validate({
+    required String fieldName,
+    required Map input,
+  });
 }

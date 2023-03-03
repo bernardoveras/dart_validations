@@ -11,22 +11,19 @@ void main() {
   });
 
   test('Should return null if email is empty', () {
-    final error = sut.validate('');
-    expect(error, isNull);
+    expect(sut.validate({'any_field': ''}), isNull);
   });
 
   test('Should return null if email is null', () {
-    final error = sut.validate(null);
-    expect(error, isNull);
+    expect(sut.validate({}), null);
+    expect(sut.validate({'any_field': null}), null);
   });
 
   test('Should return null if email is valid', () {
-    final error = sut.validate('valid@email.com');
-    expect(error, isNull);
+    expect(sut.validate({'any_field': 'example@mail.com'}), isNull);
   });
 
   test('Should return error message if email is invalid', () {
-    final error = sut.validate('incorrect_email');
-    expect(error, ValidationError.invalidField);
+    expect(sut.validate({'any_field': 'example'}), ValidationError.invalidField);
   });
 }
