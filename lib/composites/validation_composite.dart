@@ -1,15 +1,15 @@
 import '../protocols/protocols.dart';
 
-/// Classe responsável por compor uma lista de validações de campo e verificar se todas as validações são válidas.
+/// Class responsible for composing a list of field validations and checking if all validations are valid.
 class ValidationComposite implements Validation {
-  /// Lista de validações de campo a serem verificadas.
+  /// List of field validations to check.
   final List<FieldValidation> validations;
 
   ValidationComposite(this.validations);
 
-  /// Método que verifica se todas as validações de campo são válidas para o campo especificado.
+  /// Method that checks that all field validations are valid for the specified field.
   ///
-  /// Retorna `null` se todas as validações forem válidas ou uma `mensagem de erro` caso contrário.
+  /// Returns `null` if all validations are valid, or an `error message` otherwise.
   @override
   ValidationError? validate({
     required String fieldName,
@@ -17,7 +17,7 @@ class ValidationComposite implements Validation {
   }) {
     ValidationError? error;
 
-    // Itera sobre as validações de campo que se aplicam ao campo especificado.
+    // Iterates over the field validations that apply to the specified field.
     for (final validation in validations.where((v) => v.fieldName == fieldName)) {
       error = validation.validate(input);
 
@@ -26,7 +26,7 @@ class ValidationComposite implements Validation {
       }
     }
 
-    // Retorna null se todas as validações foram bem sucedidas.
+    // Returns null if all validations are successful.
     return null;
   }
 }
