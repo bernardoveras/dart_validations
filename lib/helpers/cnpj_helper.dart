@@ -24,14 +24,14 @@ class CnpjHelper extends LegalDocumentHelper {
   final RegExp formatRegex = RegExp(r'^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$');
 
   /// Replaces the values according to the `formatRegex` regex.
-  /// 
+  ///
   /// The [value] must only contain numbers.
   String _replaceFormatRegex(String value) {
     return value.replaceAllMapped(formatRegex, (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}');
   }
 
   /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
-  /// 
+  ///
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   int verifierDigit(String document) {
@@ -106,6 +106,10 @@ class CnpjHelper extends LegalDocumentHelper {
     var numbers = cnpj.substring(0, 12);
     numbers += verifierDigit(numbers).toString();
     numbers += verifierDigit(numbers).toString();
+
+    if (numbers.contains('-1')) {
+      return false;
+    }
 
     return numbers.substring(numbers.length - 2) == cnpj.substring(cnpj.length - 2);
   }

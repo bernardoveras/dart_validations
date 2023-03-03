@@ -30,14 +30,14 @@ class CpfHelper extends LegalDocumentHelper {
   final RegExp formatRegex = RegExp(r'^(\d{3})(\d{3})(\d{3})(\d{2})$');
 
   /// Replaces the values according to the `formatRegex` regex.
-  /// 
+  ///
   /// The [value] must only contain numbers.
   String _replaceFormatRegex(String value) {
     return value.replaceAllMapped(formatRegex, (Match m) => '${m[1]}.${m[2]}.${m[3]}-${m[4]}');
   }
 
   /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
-  /// 
+  ///
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   int verifierDigit(String document) {
@@ -111,6 +111,10 @@ class CpfHelper extends LegalDocumentHelper {
     var numbers = cpf.substring(0, 9);
     numbers += verifierDigit(numbers).toString();
     numbers += verifierDigit(numbers).toString();
+
+    if (numbers.contains('-1')) {
+      return false;
+    }
 
     return numbers.substring(numbers.length - 2) == cpf.substring(cpf.length - 2);
   }

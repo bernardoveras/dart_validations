@@ -1,8 +1,10 @@
 import '../regex/regex.dart';
+import '../undefined_regex.dart';
 
 abstract class LegalDocumentHelper {
   List<String> get blackList => [];
-  RegExp get formatRegex;
+
+  RegExp get formatRegex => UndefinedRegex();
 
   bool validate(String? document);
 
@@ -11,9 +13,15 @@ abstract class LegalDocumentHelper {
     return document?.replaceAll(stripRegex, '');
   }
 
-  int verifierDigit(String document);
+  int verifierDigit(String document) {
+    throw UnimplementedError();
+  }
 
-  String format(String document);
+  String format(String document) {
+    throw UnimplementedError();
+  }
 
-  String generate({bool format = false});
+  String generate({bool format = false}) {
+    throw UnimplementedError();
+  }
 }
