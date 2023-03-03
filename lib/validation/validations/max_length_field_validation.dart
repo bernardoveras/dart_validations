@@ -9,7 +9,7 @@ class MaxLengthFieldValidation extends Equatable implements FieldValidation {
   @override
   final String fieldName;
 
-  /// Tamanho máxio da String.
+  /// Tamanho máximo da String.
   final int size;
 
   late final MaxLengthValidator _maxLengthValidator;
