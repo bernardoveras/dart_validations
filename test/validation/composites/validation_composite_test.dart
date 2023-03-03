@@ -1,4 +1,4 @@
-import 'package:dart_validations/validation/validations/validations.dart';
+import 'package:dart_validations/validation/composites/composites.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
