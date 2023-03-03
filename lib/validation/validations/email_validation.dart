@@ -1,10 +1,13 @@
 import '../protocols/protocols.dart';
+import '../validators/validators.dart';
 
 /// Classe responsável por validar campos de e-mail.
 class EmailValidation implements FieldValidation {
   /// Nome do campo a ser validado.
   @override
   String fieldName;
+
+  final _emailValidator = EmailValidator();
 
   EmailValidation(this.fieldName);
 
@@ -13,10 +16,7 @@ class EmailValidation implements FieldValidation {
   /// Retorna `null` se o campo for válido ou uma `mensagem de erro` caso contrário.
   @override
   String? validate(String? value) {
-    final regex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-
-    // Retorna true caso o valor for nulo ou vazio ou se for um e-mail válido.
-    final bool isValid = value == null || value.isEmpty || regex.hasMatch(value);
+    final bool isValid = _emailValidator.validate(value);
 
     // Retorna a mensagem de erro 'Campo inválido' se o e-mail for inválido, ou null se for válido.
     return isValid ? null : 'Campo inválido';
