@@ -9,7 +9,7 @@ import 'validators.dart';
 /// final isValid = validator.validate(text); // true
 /// ```
 class MaxLengthValidator implements Validator<String> {
-  /// Tamanho mínimo da String.
+  /// Tamanho máximo da String.
   final int size;
 
   MaxLengthValidator({required this.size});
