@@ -37,6 +37,7 @@ class CpfHelper extends LegalDocumentHelper {
   }
 
   /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
+  /// 
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   int verifierDigit(String document) {
@@ -55,6 +56,9 @@ class CpfHelper extends LegalDocumentHelper {
     return (mod < 2 ? 0 : 11 - mod);
   }
 
+  /// Formats the [document] in the pattern: XXX.XXX.XXX-XX
+  ///
+  /// If [document] is invalid, it will return the same.
   @override
   String format(String document) {
     // Return the same CPF if it is not a valid CPF.
@@ -66,6 +70,8 @@ class CpfHelper extends LegalDocumentHelper {
   }
 
   /// Generates a valid CPF.
+  ///
+  /// If [format] is true, it returns the formatted CPF, otherwise, it returns only the numbers.
   @override
   String generate({bool format = false}) {
     var numbers = '';
@@ -80,6 +86,9 @@ class CpfHelper extends LegalDocumentHelper {
     return (format ? this.format(numbers) : numbers);
   }
 
+  /// Validates if [document] is null or empty and also checks if it complies with the Verifier Digit (or 'Digit Verifier (DV)' in PT-BR).
+  ///
+  /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   bool validate(String? document) {
     final cpf = strip(document);

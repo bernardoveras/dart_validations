@@ -29,13 +29,14 @@ class CnpjHelper extends LegalDocumentHelper {
   final RegExp formatRegex = RegExp(r'^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$');
 
   /// The [value] must only contain numbers.
-  /// 
+  ///
   /// Use the `strip` method to remove special characters.
   String _replaceFormatRegex(String value) {
     return value.replaceAllMapped(formatRegex, (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}');
   }
 
   /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
+  /// 
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   int verifierDigit(String document) {
@@ -55,6 +56,9 @@ class CnpjHelper extends LegalDocumentHelper {
     return (mod < 2 ? 0 : 11 - mod);
   }
 
+  /// Formats the [document] in the pattern: XX.XXX.XXX/XXXX-XX
+  ///
+  /// If [document] is invalid, it will return the same.
   @override
   String format(String document) {
     // Return the same CNPJ if it is not a valid CNPJ.
@@ -65,6 +69,9 @@ class CnpjHelper extends LegalDocumentHelper {
     return _replaceFormatRegex(strip(document)!);
   }
 
+  /// Generates a valid CNPJ.
+  ///
+  /// If [format] is true, it returns the formatted CNPJ, otherwise, it returns only the numbers.
   @override
   String generate({bool format = false}) {
     var numbers = '';
@@ -79,6 +86,9 @@ class CnpjHelper extends LegalDocumentHelper {
     return (format ? this.format(numbers) : numbers);
   }
 
+  /// Validates if [document] is null or empty and also checks if it complies with the Verifier Digit (or 'Digit Verifier (DV)' in PT-BR).
+  ///
+  /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   bool validate(String? document) {
     final cnpj = strip(document);
