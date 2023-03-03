@@ -1,6 +1,6 @@
 import 'validators.dart';
 
-/// Classe responsável pela validação de campos obrigatórios.
+/// Classe que verifica se a String possui um tamanho mínimo.
 ///
 /// Como usar:
 /// ```dart
@@ -12,11 +12,12 @@ class MinLengthValidator implements Validator<String> {
   /// Tamanho mínimo da String.
   final int size;
 
+  /// Validador que verifica se a String não é nula ou vazia.
   final _requiredValidator = RequiredValidator();
 
   MinLengthValidator({required this.size});
 
-  /// Retorna `true` se a string não for nula e vazia.
+  /// Retorna `true` se [value] não for nulo, não for vazio e possuir um tamanho mínimo de [size].
   ///
   /// Caso contrário, retorna `false`.
   @override
@@ -30,6 +31,7 @@ class MinLengthValidator implements Validator<String> {
     if (value!.length < size) {
       return false;
     }
+
     return true;
   }
 }
