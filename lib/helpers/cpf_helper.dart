@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'helpers.dart';
 
 class CpfHelper extends LegalDocumentHelper {
@@ -39,5 +41,45 @@ class CpfHelper extends LegalDocumentHelper {
   String format(String document) {
     // TODO: implement format
     throw UnimplementedError();
+  }
+
+  @override
+  String generate({bool format = false}) {
+    var numbers = '';
+
+    for (var i = 0; i < 9; i += 1) {
+      numbers += Random().nextInt(9).toString();
+    }
+
+    numbers += verifierDigit(numbers).toString();
+    numbers += verifierDigit(numbers).toString();
+
+    return (format ? this.format(numbers) : numbers);
+  }
+
+  @override
+  bool validate(String? document) {
+    final cpf = strip(document);
+
+    // CPF must be defined
+    if (cpf == null || cpf.isEmpty) {
+      return false;
+    }
+
+    // CPF must have 11 chars
+    if (cpf.length != 11) {
+      return false;
+    }
+
+    // CPF can't be blacklisted
+    if (blackList.contains(cpf)) {
+      return false;
+    }
+
+    var numbers = cpf.substring(0, 9);
+    numbers += verifierDigit(numbers).toString();
+    numbers += verifierDigit(numbers).toString();
+
+    return numbers.substring(numbers.length - 2) == cpf.substring(cpf.length - 2);
   }
 }

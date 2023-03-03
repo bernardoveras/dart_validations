@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'helpers.dart';
 
 class CnpjHelper extends LegalDocumentHelper {
@@ -39,5 +41,45 @@ class CnpjHelper extends LegalDocumentHelper {
   String format(String document) {
     // TODO: implement format
     throw UnimplementedError();
+  }
+
+  @override
+  String generate({bool format = false}) {
+    var numbers = '';
+
+    for (var i = 0; i < 12; i += 1) {
+      numbers += Random().nextInt(9).toString();
+    }
+
+    numbers += verifierDigit(numbers).toString();
+    numbers += verifierDigit(numbers).toString();
+
+    return (format ? this.format(numbers) : numbers);
+  }
+
+  @override
+  bool validate(String? document) {
+    final cnpj = strip(document);
+
+    // CNPJ must be defined
+    if (cnpj == null || cnpj.isEmpty) {
+      return false;
+    }
+
+    // CNPJ must have 14 chars
+    if (cnpj.length != 14) {
+      return false;
+    }
+
+    // CNPJ can't be blacklisted
+    if (blackList.contains(cnpj)) {
+      return false;
+    }
+
+    var numbers = cnpj.substring(0, 12);
+    numbers += verifierDigit(numbers).toString();
+    numbers += verifierDigit(numbers).toString();
+
+    return numbers.substring(numbers.length - 2) == cnpj.substring(cnpj.length - 2);
   }
 }

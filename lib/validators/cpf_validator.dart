@@ -22,27 +22,8 @@ class CpfValidator implements Validator<String> {
   /// Returns true if the value is null or empty or if it is a valid CPF.
   @override
   bool validate(String? value) {
-    final cpf = _cpfHelper.strip(value);
+    final bool isValid = _cpfHelper.validate(value);
 
-    final hasValue = _requiredValidator.validate(cpf);
-    if (!hasValue) {
-      return false;
-    }
-
-    // CPF must have 11 chars
-    if (cpf.length != 11) {
-      return false;
-    }
-
-    // CPF can't be blacklisted
-    if (_cpfHelper.blackList.contains(cpf)) {
-      return false;
-    }
-
-    var numbers = cpf.substring(0, 9);
-    numbers += _cpfHelper.verifierDigit(numbers).toString();
-    numbers += _cpfHelper.verifierDigit(numbers).toString();
-
-    return numbers.substring(numbers.length - 2) == cpf.substring(cpf.length - 2);
+    return isValid;
   }
 }
