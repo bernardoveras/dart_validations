@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 
-import 'package:dart_validations/composites/composites.dart';
+import 'package:dart_validations/compounds/compounds.dart';
 import 'package:dart_validations/protocols/protocols.dart';
 
-import '../mocks/composites/composites.mocks.dart';
+import '../mocks/compounds/compounds.mocks.dart';
 
 void main() {
-  late ValidationComposite sut;
+  late ValidationCompound sut;
   late FieldValidationMock validation1;
   late FieldValidationMock validation2;
   late FieldValidationMock validation3;
@@ -16,7 +16,7 @@ void main() {
     validation2 = FieldValidationMock();
     validation3 = FieldValidationMock();
     validation3.mockFieldName('other_field');
-    sut = ValidationComposite([validation1, validation2, validation3]);
+    sut = ValidationCompound([validation1, validation2, validation3]);
   });
 
   test('Should return null if all validations returns null or empty', () {

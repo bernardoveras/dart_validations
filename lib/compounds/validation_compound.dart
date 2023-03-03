@@ -1,11 +1,11 @@
 import '../protocols/protocols.dart';
 
 /// Class responsible for composing a list of field validations and checking if all validations are valid.
-class ValidationComposite implements Validation {
+class ValidationCompound implements Validation {
   /// List of field validations to check.
   final List<FieldValidation> validations;
 
-  ValidationComposite(this.validations);
+  ValidationCompound(this.validations);
 
   /// Method that checks that all field validations are valid for the specified field.
   ///
