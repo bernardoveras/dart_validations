@@ -1,9 +1,9 @@
 import '../protocols/protocols.dart';
 import '../validations/validations.dart';
 
-/// Classe utilizada para construir validações de campos a partir de um [fieldName]
+/// Class used to build field validations based on a [fieldName].
 ///
-/// Como usar:
+/// Example:
 ///
 /// ```dart
 /// final loginValidations = [
@@ -16,44 +16,44 @@ import '../validations/validations.dart';
 class ValidationBuilder {
   static late final ValidationBuilder _instance;
 
-  /// Armazena o nome do campo a ser validado.
+  /// Name of the field to be validated.
   final String _fieldName;
 
-  /// Lista de validações de campo construídas.
+  /// List of field validations.
   final List<FieldValidation> _validations = [];
 
   ValidationBuilder._(String fieldName) : _fieldName = fieldName;
 
-  /// Retorna uma instância de [ValidationBuilder] com o nome do campo a ser validado.
+  /// Returns an instance of [ValidationBuilder] with the name of the field to be validated.
   factory ValidationBuilder.field(String fieldName) {
     _instance = ValidationBuilder._(fieldName);
     return _instance;
   }
 
-  /// Adiciona uma validação de campo obrigatório à lista de validações.
+  /// Adds a required field validation to the validations list.
   ValidationBuilder required() {
     _validations.add(RequiredFieldValidation(_fieldName));
     return this;
   }
 
-  /// Adiciona uma validação de campo de e-mail à lista de validações.
+  /// Adds an email field validation to the validations list.
   ValidationBuilder email() {
     _validations.add(EmailFieldValidation(_fieldName));
     return this;
   }
 
-  /// Adiciona uma validação de campo de tamanho mínimo à lista de validações.
+  /// Adds a minimum length field validation to the validations list.
   ValidationBuilder min(int length) {
     _validations.add(MinLengthFieldValidation(fieldName: _fieldName, length: length));
     return this;
   }
 
-  /// Adiciona uma validação de campo de tamanho máximo à lista de validações.
+  /// Adds a maximum length field validation to the validations list.
   ValidationBuilder max(int length) {
     _validations.add(MaxLengthFieldValidation(fieldName: _fieldName, length: length));
     return this;
   }
 
-  /// Retorna a lista de validações de campo construídas.
+  /// Returns the list of field validations.
   List<FieldValidation> build() => _validations;
 }
