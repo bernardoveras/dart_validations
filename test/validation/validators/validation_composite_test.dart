@@ -12,7 +12,7 @@ class ValidationComposite implements Validation {
   String? validate({required String field, required String? value}) {
     String? error;
 
-    for (final validation in validations) {
+    for (final validation in validations.where((v) => v.field == field)) {
       error = validation.validate(value);
 
       if (error?.isNotEmpty == true) {
@@ -75,5 +75,15 @@ void main() {
     final error = sut.validate(field: 'any_field', value: 'any_value');
 
     expect(error, 'error_1');
+  });
+
+  test('Should return the first error of the field', () {
+    mockValidation1('error_1');
+    mockValidation2('error_2');
+    mockValidation3('error_3');
+
+    final error = sut.validate(field: 'other_field', value: 'any_value');
+
+    expect(error, 'error_3');
   });
 }
