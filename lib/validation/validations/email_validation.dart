@@ -5,7 +5,7 @@ import '../protocols/protocols.dart';
 import '../validators/validators.dart';
 
 /// Classe responsável por validar campos de e-mail.
-class EmailValidation extends Equatable implements FieldValidation {
+class EmailFieldValidation extends Equatable implements FieldValidation {
   /// Nome do campo a ser validado.
   @override
   final String fieldName;
@@ -15,7 +15,7 @@ class EmailValidation extends Equatable implements FieldValidation {
   @override
   List<Object> get props => [fieldName];
 
-  EmailValidation(this.fieldName);
+  EmailFieldValidation(this.fieldName);
 
   /// Método que valida se o valor do campo especificado é um e-mail válido.
   ///

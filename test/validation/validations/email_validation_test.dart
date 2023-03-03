@@ -4,10 +4,10 @@ import 'package:dart_validations/validation/protocols/protocols.dart';
 import 'package:dart_validations/validation/validations/validations.dart';
 
 void main() {
-  late EmailValidation sut;
+  late EmailFieldValidation sut;
 
   setUp(() {
-    sut = EmailValidation('any_field');
+    sut = EmailFieldValidation('any_field');
   });
 
   test('Should return null if email is empty', () {

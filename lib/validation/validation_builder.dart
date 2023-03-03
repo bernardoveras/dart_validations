@@ -36,7 +36,7 @@ class ValidationBuilder {
 
   /// Adiciona uma validação de campo de e-mail à lista de validações.
   ValidationBuilder email() {
-    _validations.add(EmailValidation(_fieldName));
+    _validations.add(EmailFieldValidation(_fieldName));
     return this;
   }
 
