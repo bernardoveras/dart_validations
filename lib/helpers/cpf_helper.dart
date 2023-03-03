@@ -65,6 +65,7 @@ class CpfHelper extends LegalDocumentHelper {
     return _replaceFormatRegex(strip(document)!);
   }
 
+  /// Generates a valid CPF.
   @override
   String generate({bool format = false}) {
     var numbers = '';
