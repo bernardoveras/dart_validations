@@ -4,9 +4,9 @@ import '../protocols/protocols.dart';
 class RequiredFieldValidation implements FieldValidation {
   /// Nome do campo a ser validado.
   @override
-  final String field;
+  final String fieldName;
 
-  RequiredFieldValidation(this.field);
+  RequiredFieldValidation(this.fieldName);
 
   /// Método que valida se o valor do campo especificado não é nulo e nem vazio.
   ///

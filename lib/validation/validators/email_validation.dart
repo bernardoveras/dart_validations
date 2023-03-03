@@ -1,10 +1,10 @@
 import '../protocols/protocols.dart';
 
 class EmailValidation implements FieldValidation {
-  EmailValidation(this.field);
+  EmailValidation(this.fieldName);
 
   @override
-  String field;
+  String fieldName;
 
   @override
   String? validate(String? value) {
