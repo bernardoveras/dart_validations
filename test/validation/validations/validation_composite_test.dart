@@ -1,14 +1,14 @@
-import 'package:dart_validations/validation/validators/validators.dart';
+import 'package:dart_validations/validation/validations/validations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import 'package:dart_validations/validation/protocols/protocols.dart';
 
 class FieldValidationMock extends Mock implements FieldValidation {
-  FieldValidationMock(this.field);
+  FieldValidationMock(this.fieldName);
 
   @override
-  String field;
+  String fieldName;
 }
 
 void main() {

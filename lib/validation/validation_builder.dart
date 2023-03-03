@@ -1,5 +1,5 @@
 import 'protocols/protocols.dart';
-import 'validators/validators.dart';
+import 'validations/validations.dart';
 
 /// Classe utilizada para construir validações de campos a partir de um [fieldName]
 ///
