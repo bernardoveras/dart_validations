@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 
-import 'package:dart_validations/validation/protocols/protocols.dart';
-import 'package:dart_validations/validation/validations/validations.dart';
+import 'package:dart_validations/protocols/protocols.dart';
+import 'package:dart_validations/validations/validations.dart';
 
 void main() {
   late EmailFieldValidation sut;

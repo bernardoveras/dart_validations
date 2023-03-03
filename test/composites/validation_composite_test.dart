@@ -1,9 +1,9 @@
 import 'package:test/test.dart';
 
-import 'package:dart_validations/validation/composites/composites.dart';
-import 'package:dart_validations/validation/protocols/protocols.dart';
+import 'package:dart_validations/composites/composites.dart';
+import 'package:dart_validations/protocols/protocols.dart';
 
-import '../../mocks/validation/composites/composites.mocks.dart';
+import '../mocks/validation/composites/composites.mocks.dart';
 
 void main() {
   late ValidationComposite sut;
