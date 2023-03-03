@@ -10,6 +10,15 @@ class ValidationComposite implements Validation {
 
   @override
   String? validate({required String field, required String? value}) {
+    String? error;
+
+    for (final validation in validations) {
+      error = validation.validate(value);
+
+      if (error?.isNotEmpty == true) {
+        return error;
+      }
+    }
     return null;
   }
 }
@@ -22,10 +31,10 @@ class FieldValidationMock extends Mock implements FieldValidation {
 }
 
 void main() {
-  late final ValidationComposite sut;
-  late final FieldValidationMock validation1;
-  late final FieldValidationMock validation2;
-  late final FieldValidationMock validation3;
+  late ValidationComposite sut;
+  late FieldValidationMock validation1;
+  late FieldValidationMock validation2;
+  late FieldValidationMock validation3;
 
   void mockValidation1([String? error]) {
     when(validation1.validate(any)).thenReturn(error);
@@ -56,5 +65,15 @@ void main() {
     final error = sut.validate(field: 'any_field', value: 'any_value');
 
     expect(error, null);
+  });
+
+  test('Should return the first error', () {
+    mockValidation1('error_1');
+    mockValidation2('error_2');
+    mockValidation3('error_3');
+
+    final error = sut.validate(field: 'any_field', value: 'any_value');
+
+    expect(error, 'error_1');
   });
 }
