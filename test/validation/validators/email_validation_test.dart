@@ -29,4 +29,9 @@ void main() {
     final error = sut.validate(null);
     expect(error, isNull);
   });
+
+  test('Should return null if email is valid', () {
+    final error = sut.validate('test@email.com');
+    expect(error, isNull);
+  });
 }
