@@ -20,6 +20,12 @@ void main() {
     expect(error, false);
   });
 
+  test('Should return false if value is empty string', () {
+    final error = sut.validate('  ');
+
+    expect(error, false);
+  });
+
   test('Should return false if value is null', () {
     final error = sut.validate(null);
 

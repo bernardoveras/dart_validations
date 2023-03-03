@@ -14,7 +14,10 @@ class RequiredValidator implements Validator<String> {
   /// Caso contrário, retorna `false`.
   @override
   bool validate(String? value) {
-    final bool isValid = value != null && value.isNotEmpty;
+    // Remove todos os espaços em branco da string.
+    final hydratedValue = value?.replaceAll(' ', '');
+
+    final bool isValid = hydratedValue != null && hydratedValue.isNotEmpty;
     return isValid;
   }
 }
