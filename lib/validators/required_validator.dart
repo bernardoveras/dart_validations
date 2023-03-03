@@ -1,20 +1,20 @@
 import 'validators.dart';
 
-/// Classe responsável pela validação de campos obrigatórios.
+/// Class responsible for validating mandatory fields.
 ///
-/// Como usar:
+/// Example:
 /// ```dart
 /// final validator = RequiredValidator();
 /// final text = 'example';
 /// final isValid = validator.validate(text); // true
 /// ```
 class RequiredValidator implements Validator<String> {
-  /// Retorna `true` se a string não for nula e vazia.
+  /// Returns `true` if the string is not null and empty.
   ///
-  /// Caso contrário, retorna `false`.
+  /// Otherwise, it returns `false`.
   @override
   bool validate(String? value) {
-    // Remove todos os espaços em branco da string.
+    // Removes all whitespace from the string.
     final hydratedValue = value?.replaceAll(' ', '');
 
     final bool isValid = hydratedValue != null && hydratedValue.isNotEmpty;
