@@ -1,10 +1,13 @@
 import '../protocols/protocols.dart';
+import '../validators/validators.dart';
 
 /// Classe responsável por validar se um campo não é nulo e nem vazio.
 class RequiredFieldValidation implements FieldValidation {
   /// Nome do campo a ser validado.
   @override
   final String fieldName;
+
+  final RequiredValidator _requiredValidator = RequiredValidator();
 
   RequiredFieldValidation(this.fieldName);
 
@@ -16,12 +19,9 @@ class RequiredFieldValidation implements FieldValidation {
     final errorText = 'Campo obrigatório';
 
     // Verifica se o valor do campo é nulo ou vazio
-    if (value == null || value.isEmpty) {
-      return errorText;
-    }
+    final bool isValid = _requiredValidator.validate(value);    
 
     // Retorna null se o campo for válido
-
-    return null;
+    return isValid ? null : errorText;
   }
 }
