@@ -19,6 +19,26 @@ void main() {
     expect(sut.validate('864.926.616-99'), true);
   });
 
+   test('Should return false if stripped random CPF is invalid', () {
+    final randomInvalidCpf = '02057227842';
+    expect(sut.validate(randomInvalidCpf), false);
+  });
+
+  test('Should return false if formatted random CPF is invalid', () {
+    final randomInvalidCpf = '268.973.295-36';
+    expect(sut.validate(randomInvalidCpf), false);
+  });
+
+  test('Should return false if stripped CPF is blacklisted', () {
+    final cpfBlacklisted = '00000000000';
+    expect(sut.validate(cpfBlacklisted), false);
+  });
+
+  test('Should return false if formatted CPF is blacklisted', () {
+    final cpfBlacklisted = '000.000.000-00';
+    expect(sut.validate(cpfBlacklisted), false);
+  });
+
   test('Should return false if value is empty', () {
     expect(sut.validate(''), false);
   });
