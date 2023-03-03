@@ -1,3 +1,4 @@
+export 'cnpj_validator.dart';
 export 'cpf_validator.dart';
 export 'email_validator.dart';
 export 'length_validator.dart';
