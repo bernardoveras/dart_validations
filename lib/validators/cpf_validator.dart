@@ -1,21 +1,16 @@
 import '../helpers/helpers.dart';
 import 'validators.dart';
 
-/// Class responsible for validating if a String is a valid email address.
-///
-/// Uses a regular expression to check if the email format is valid.
+/// Class responsible for validating if a String is a valid CPF.
 ///
 /// Example:
 /// ```dart
 /// final cpfValidator = CpfValidator();
-/// final email = 'example@mail.com';
-/// final isValid = CpfValidator.validate(email); // true
+/// final cpf = '864.926.616-99';
+/// final isValid = CpfValidator.validate(cpf); // true
 /// ```
 class CpfValidator implements Validator<String> {
   final _cpfHelper = CpfHelper();
-
-  /// Validator that checks if the String is not null or empty.
-  final _requiredValidator = RequiredValidator();
 
   /// Validates if a String is a valid CPF.
   ///

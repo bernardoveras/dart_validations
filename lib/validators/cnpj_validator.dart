@@ -6,8 +6,8 @@ import 'validators.dart';
 /// Example:
 /// ```dart
 /// final cnpjValidator = CnpjValidator();
-/// final email = 'example@mail.com';
-/// final isValid = CnpjValidator.validate(email); // true
+/// final cnpj = '88.791.131/0001-85';
+/// final isValid = CnpjValidator.validate(cnpj); // true
 /// ```
 class CnpjValidator implements Validator<String> {
   final _cnpjHelper = CnpjHelper();
