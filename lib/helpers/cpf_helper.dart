@@ -1,4 +1,4 @@
-import 'package:dart_validations/helpers/legal_document_helper.dart';
+import 'helpers.dart';
 
 class CpfHelper extends LegalDocumentHelper {
   @override
@@ -34,7 +34,7 @@ class CpfHelper extends LegalDocumentHelper {
 
     return (mod < 2 ? 0 : 11 - mod);
   }
-  
+
   @override
   String format(String document) {
     // TODO: implement format
