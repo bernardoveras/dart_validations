@@ -7,6 +7,8 @@ import '../validations/validations.dart';
 ///
 /// ```dart
 /// final loginValidations = [
+///   ...ValidationBuilder.field('title').min(5).build(),
+///   ...ValidationBuilder.field('title').max(255).build(),
 ///   ...ValidationBuilder.field('email').required().email().build(),
 ///   ...ValidationBuilder.field('password').required().build(),
 /// ];
