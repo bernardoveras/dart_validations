@@ -22,7 +22,7 @@ class MaxLengthFieldValidation extends Equatable implements FieldLengthValidatio
     required this.fieldName,
     required this.length,
   }) {
-    _maxLengthValidator = MaxLengthValidator(size: length);
+    _maxLengthValidator = MaxLengthValidator(length: length);
   }
 
   /// Método que valida se o valor do campo especificado é maior do que o tamanho máximo.

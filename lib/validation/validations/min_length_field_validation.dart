@@ -22,7 +22,7 @@ class MinLengthFieldValidation extends Equatable implements FieldLengthValidatio
     required this.fieldName,
     required this.length,
   }) {
-    _minLengthValidator = MinLengthValidator(size: length);
+    _minLengthValidator = MinLengthValidator(length: length);
   }
 
   /// Método que valida se o valor do campo especificado é nulo, vazio ou menor do que o tamanho mínimo.

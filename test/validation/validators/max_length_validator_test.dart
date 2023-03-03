@@ -5,11 +5,11 @@ import 'package:dart_validations/validation/validators/validators.dart';
 
 void main() {
   late MaxLengthValidator sut;
-  late int maxSize;
+  late int maxLength;
 
   setUp(() {
-    maxSize = 7;
-    sut = MaxLengthValidator(size: maxSize);
+    maxLength = 7;
+    sut = MaxLengthValidator(length: maxLength);
   });
 
   test('Should return true if value is empty', () {
@@ -20,11 +20,11 @@ void main() {
     expect(sut.validate(null), true);
   });
 
-  test('Should return true if value is equal than max size', () {
-    expect(sut.validate(faker.randomGenerator.string(maxSize, min: maxSize)), true);
+  test('Should return true if value is equal than max length', () {
+    expect(sut.validate(faker.randomGenerator.string(maxLength, min: maxLength)), true);
   });
 
-  test('Should return false if value is bigger than max size', () {
-    expect(sut.validate(faker.randomGenerator.string(maxSize + 1, min: maxSize + 1)), false);
+  test('Should return false if value is bigger than max length', () {
+    expect(sut.validate(faker.randomGenerator.string(maxLength + 1, min: maxLength + 1)), false);
   });
 }

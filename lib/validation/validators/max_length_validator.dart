@@ -8,13 +8,14 @@ import 'validators.dart';
 /// final text = 'example';
 /// final isValid = validator.validate(text); // true
 /// ```
-class MaxLengthValidator implements Validator<String> {
+class MaxLengthValidator implements LengthValidator<String> {
   /// Tamanho máximo da String.
-  final int size;
+  @override
+  final int length;
 
-  MaxLengthValidator({required this.size});
+  MaxLengthValidator({required this.length});
 
-  /// Retorna `true` se [value] não for nulo, não for vazio e possuir um tamanho mínimo de [size].
+  /// Retorna `true` se [value] possuir um tamanho menor que [length].
   ///
   /// Caso contrário, retorna `false`.
   @override
@@ -23,7 +24,7 @@ class MaxLengthValidator implements Validator<String> {
       return true;
     }
 
-    if (value.length > size) {
+    if (value.length > length) {
       return false;
     }
 

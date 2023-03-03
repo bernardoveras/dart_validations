@@ -8,16 +8,17 @@ import 'validators.dart';
 /// final text = 'example';
 /// final isValid = validator.validate(text); // true
 /// ```
-class MinLengthValidator implements Validator<String> {
+class MinLengthValidator implements LengthValidator<String> {
   /// Tamanho mínimo da String.
-  final int size;
+  @override
+  final int length;
 
   /// Validador que verifica se a String não é nula ou vazia.
   final _requiredValidator = RequiredValidator();
 
-  MinLengthValidator({required this.size});
+  MinLengthValidator({required this.length});
 
-  /// Retorna `true` se [value] não for nulo, não for vazio e possuir um tamanho mínimo de [size].
+  /// Retorna `true` se [value] não for nulo, não for vazio e possuir um tamanho mínimo de [length].
   ///
   /// Caso contrário, retorna `false`.
   @override
@@ -28,7 +29,7 @@ class MinLengthValidator implements Validator<String> {
       return false;
     }
 
-    if (value!.length < size) {
+    if (value!.length < length) {
       return false;
     }
 
