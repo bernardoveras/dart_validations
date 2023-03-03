@@ -15,13 +15,11 @@ class RequiredFieldValidation implements FieldValidation {
   ///
   /// Retorna `null` se o campo for válido ou uma `mensagem de erro` caso contrário.
   @override
-  String? validate(String? value) {
-    final errorText = 'Campo obrigatório';
-
+  ValidationError? validate(String? value) {
     // Verifica se o valor do campo é nulo ou vazio
     final bool isValid = _requiredValidator.validate(value);    
 
     // Retorna null se o campo for válido
-    return isValid ? null : errorText;
+    return isValid ? null : ValidationError.requiredField;
   }
 }

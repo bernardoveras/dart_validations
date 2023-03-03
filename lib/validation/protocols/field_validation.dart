@@ -1,4 +1,6 @@
+import 'protocols.dart';
+
 abstract class FieldValidation {
   String get fieldName;
-  String? validate(String? value);
+  ValidationError? validate(String? value);
 }

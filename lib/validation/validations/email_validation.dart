@@ -15,12 +15,10 @@ class EmailValidation implements FieldValidation {
   ///
   /// Retorna `null` se o campo for válido ou uma `mensagem de erro` caso contrário.
   @override
-  String? validate(String? value) {
-    final errorText = 'Campo inválido';
-
+  ValidationError? validate(String? value) {
     final bool isValid = _emailValidator.validate(value);
 
     // Retorna a mensagem de erro se o e-mail for inválido, ou null se for válido.
-    return isValid ? null : errorText;
+    return isValid ? null : ValidationError.invalidField;
   }
 }

@@ -1,3 +1,12 @@
+enum ValidationError {
+  requiredField('Campo obrigatório'),
+  invalidField('Campo inválido');
+
+  final String message;
+
+  const ValidationError(this.message);
+}
+
 abstract class Validation {
-  String? validate({required String fieldName, required String? value});
+  ValidationError? validate({required String fieldName, required String? value});
 }

@@ -1,5 +1,6 @@
 import 'package:test/test.dart';
 
+import 'package:dart_validations/validation/protocols/protocols.dart';
 import 'package:dart_validations/validation/validations/validations.dart';
 
 void main() {
@@ -26,6 +27,6 @@ void main() {
 
   test('Should return error message if email is invalid', () {
     final error = sut.validate('incorrect_email');
-    expect(error, 'Campo inválido');
+    expect(error, ValidationError.invalidField);
   });
 }
