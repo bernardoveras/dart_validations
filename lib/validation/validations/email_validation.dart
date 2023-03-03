@@ -1,13 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:equatable/equatable.dart';
+
 import '../protocols/protocols.dart';
 import '../validators/validators.dart';
 
 /// Classe responsável por validar campos de e-mail.
-class EmailValidation implements FieldValidation {
+class EmailValidation extends Equatable implements FieldValidation {
   /// Nome do campo a ser validado.
   @override
   final String fieldName;
 
   final _emailValidator = EmailValidator();
+
+  @override
+  List<Object> get props => [fieldName];
 
   EmailValidation(this.fieldName);
 
