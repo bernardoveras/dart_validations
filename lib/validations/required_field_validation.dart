@@ -3,9 +3,9 @@ import 'package:equatable/equatable.dart';
 import '../protocols/protocols.dart';
 import '../validators/validators.dart';
 
-/// Classe responsável por validar se um campo não é nulo e nem vazio.
+/// Class responsible for validating if a field is neither null nor empty.
 class RequiredFieldValidation extends Equatable implements FieldValidation {
-  /// Nome do campo a ser validado.
+  /// Name of the field to be validated.
   @override
   final String fieldName;
 
@@ -16,15 +16,15 @@ class RequiredFieldValidation extends Equatable implements FieldValidation {
 
   RequiredFieldValidation(this.fieldName);
 
-  /// Método que valida se o valor do campo especificado não é nulo e nem vazio.
+  /// Method that validates that the value of the specified field is neither null nor empty.
   ///
-  /// Retorna `null` se o campo for válido ou uma `mensagem de erro` caso contrário.
+  /// Returns `null` if the field is valid, or an `error message` otherwise.
   @override
   ValidationError? validate(Map input) {
-    // Verifica se o valor do campo é nulo ou vazio
+    // Checks if the field value is null or empty.
     final bool isValid = _requiredValidator.validate(input[fieldName]);
 
-    // Retorna a mensagem de erro se o valor for inválido, ou null se for válido.
+    // Returns an error message if the value is invalid, or null if valid.
     return isValid ? null : ValidationError.requiredField;
   }
 }
