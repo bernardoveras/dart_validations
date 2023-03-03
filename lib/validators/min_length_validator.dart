@@ -1,28 +1,28 @@
 import 'validators.dart';
 
-/// Classe que verifica se a String possui um tamanho mínimo.
+/// Class that checks if the String has a minimum length.
 ///
-/// Como usar:
+/// Example:
 /// ```dart
 /// final validator = MinLengthValidator(5);
 /// final text = 'example';
 /// final isValid = validator.validate(text); // true
 /// ```
 class MinLengthValidator implements LengthValidator<String> {
-  /// Tamanho mínimo da String.
+  /// Minimum length.
   @override
   final int length;
 
-  /// Validador que verifica se a String não é nula ou vazia.
+  /// Validator that checks if the String is not null or empty.
   final _requiredValidator = RequiredValidator();
 
   MinLengthValidator({
     required this.length,
   }) : assert(length > 0, 'O tamanho mínimo deve ser maior que zero.');
 
-  /// Retorna `true` se [value] não for nulo, não for vazio e possuir um tamanho mínimo de [length].
+  /// Returns `true` if [value] is not null, is not empty, and has a minimum length of [length].
   ///
-  /// Caso contrário, retorna `false`.
+  /// Otherwise, it returns `false`.
   @override
   bool validate(String? value) {
     final hasValue = _requiredValidator.validate(value);
