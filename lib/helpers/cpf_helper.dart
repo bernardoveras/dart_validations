@@ -29,9 +29,9 @@ class CpfHelper extends LegalDocumentHelper {
   @override
   final RegExp formatRegex = RegExp(r'^(\d{3})(\d{3})(\d{3})(\d{2})$');
 
+  /// Replaces the values according to the `formatRegex` regex.
+  /// 
   /// The [value] must only contain numbers.
-  ///
-  /// Use the `strip` method to remove special characters.
   String _replaceFormatRegex(String value) {
     return value.replaceAllMapped(formatRegex, (Match m) => '${m[1]}.${m[2]}.${m[3]}-${m[4]}');
   }
