@@ -5,7 +5,7 @@ import '../validators/validators.dart';
 class EmailValidation implements FieldValidation {
   /// Nome do campo a ser validado.
   @override
-  String fieldName;
+  final String fieldName;
 
   final _emailValidator = EmailValidator();
 
