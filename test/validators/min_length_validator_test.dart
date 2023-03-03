@@ -31,4 +31,8 @@ void main() {
   test('Should return true if value is bigger than min length', () {
     expect(sut.validate(faker.randomGenerator.string(10, min: minLength)), true);
   });
+
+  test('Should throws AssertionError if length is less than or equal to zero', () {
+    expect(() => MinLengthValidator(length: 0), throwsA(isA<AssertionError>()));
+  });
 }

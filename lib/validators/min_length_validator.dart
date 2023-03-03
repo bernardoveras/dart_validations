@@ -16,7 +16,9 @@ class MinLengthValidator implements LengthValidator<String> {
   /// Validador que verifica se a String não é nula ou vazia.
   final _requiredValidator = RequiredValidator();
 
-  MinLengthValidator({required this.length});
+  MinLengthValidator({
+    required this.length,
+  }) : assert(length > 0, 'O tamanho mínimo deve ser maior que zero.');
 
   /// Retorna `true` se [value] não for nulo, não for vazio e possuir um tamanho mínimo de [length].
   ///
