@@ -1,5 +1,5 @@
-import 'protocols/protocols.dart';
-import 'validations/validations.dart';
+import '../protocols/protocols.dart';
+import '../validations/validations.dart';
 
 /// Classe utilizada para construir validações de campos a partir de um [fieldName]
 ///
@@ -37,6 +37,18 @@ class ValidationBuilder {
   /// Adiciona uma validação de campo de e-mail à lista de validações.
   ValidationBuilder email() {
     _validations.add(EmailFieldValidation(_fieldName));
+    return this;
+  }
+
+  /// Adiciona uma validação de campo de tamanho mínimo à lista de validações.
+  ValidationBuilder min(int length) {
+    _validations.add(MinLengthFieldValidation(fieldName: _fieldName, length: length));
+    return this;
+  }
+
+  /// Adiciona uma validação de campo de tamanho máximo à lista de validações.
+  ValidationBuilder max(int length) {
+    _validations.add(MaxLengthFieldValidation(fieldName: _fieldName, length: length));
     return this;
   }
 
