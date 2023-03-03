@@ -3,9 +3,9 @@ import 'package:equatable/equatable.dart';
 import '../protocols/protocols.dart';
 import '../validators/validators.dart';
 
-/// Classe responsável por validar campos de e-mail.
+/// Class responsible for validating email fields.
 class EmailFieldValidation extends Equatable implements FieldValidation {
-  /// Nome do campo a ser validado.
+  /// Field name to be validated.
   @override
   final String fieldName;
 
@@ -16,14 +16,14 @@ class EmailFieldValidation extends Equatable implements FieldValidation {
 
   EmailFieldValidation(this.fieldName);
 
-  /// Método que valida se o valor do campo especificado é um e-mail válido.
+  /// Method that validates that the specified field value is a valid email.
   ///
-  /// Retorna `null` se o campo for válido ou uma `mensagem de erro` caso contrário.
+  /// Returns `null` if the field is valid, or an `error message` otherwise.
   @override
   ValidationError? validate(Map input) {
     final bool isValid = _emailValidator.validate(input[fieldName]);
 
-    // Retorna a mensagem de erro se o valor for inválido, ou null se for válido.
+    // Returns an error message if the value is invalid, or null if valid.
     return isValid ? null : ValidationError.invalidField;
   }
 }
