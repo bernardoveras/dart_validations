@@ -15,7 +15,7 @@ class ValidationComposite implements Validation {
     String? error;
 
     // Itera sobre as validações de campo que se aplicam ao campo especificado
-    for (final validation in validations.where((v) => v.field == field)) {
+    for (final validation in validations.where((v) => v.fieldName == field)) {
       error = validation.validate(value);
 
       if (error?.isNotEmpty == true) {
