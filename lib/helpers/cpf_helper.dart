@@ -84,7 +84,7 @@ class CpfHelper extends LegalDocumentHelper {
     final buffer = StringBuffer();
 
     for (var i = 0; i < 9; i += 1) {
-      final nextNumber = Random().nextInt(9).toString();
+      final nextNumber = Random().nextInt(9);
       buffer.write(nextNumber);
     }
 
