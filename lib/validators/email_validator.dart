@@ -1,3 +1,4 @@
+import '../regex/regex.dart';
 import 'validators.dart';
 
 /// Class responsible for validating if a String is a valid email address.
@@ -11,10 +12,6 @@ import 'validators.dart';
 /// final isValid = emailValidator.validate(email); // true
 /// ```
 class EmailValidator implements Validator<String> {
-  final RegExp _emailRegex = RegExp(
-    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-  );
-
   /// Validates if a String is a valid email.
   ///
   /// Returns true if the value is null or empty or
@@ -24,7 +21,7 @@ class EmailValidator implements Validator<String> {
   @override
   bool validate(String? value) {
     final isValid =
-        value == null || value.isEmpty || _emailRegex.hasMatch(value);
+        value == null || value.isEmpty || emailRegex.hasMatch(value);
     return isValid;
   }
 }
