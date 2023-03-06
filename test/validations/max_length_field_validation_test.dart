@@ -39,7 +39,7 @@ void main() {
     );
   });
 
-   test('Should throws assert error if length is less than zero', () {
+  test('Should throws assert error if length is less than zero', () {
     expect(
       () => MaxLengthFieldValidation(fieldName: 'field_name', length: 0),
       throwsA(isA<AssertionError>()),
