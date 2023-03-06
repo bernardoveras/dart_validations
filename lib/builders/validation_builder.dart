@@ -1,19 +1,6 @@
 import '../protocols/protocols.dart';
 import '../validations/validations.dart';
 
-extension FieldValidationListExtension on List<FieldValidation> {
-  List<ValidationError>? validate(Map input) {
-    final errors = <ValidationError>[];
-    for (final validation in this) {
-      final error = validation.validate(input);
-      if (error != null) {
-        errors.add(error);
-      }
-    }
-    return errors.isEmpty ? null : errors;
-  }
-}
-
 /// Class used to build field validations based on a `fieldName`.
 ///
 /// Example:

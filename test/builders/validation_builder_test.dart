@@ -9,11 +9,6 @@ void main() {
 
   test('Should be returns null if contains text', () {
     final builder = ValidationBuilder.field('field').required().build();
-    expect(builder.validate({'field': 'text'}), isNull);
-  });
-
-  test('Should be returns ValidationError list if email is invalid', () {
-    final builder = ValidationBuilder.field('field').email().min(20).build();
-    expect(builder.validate({'field': 'text@mail.com'})?.isEmpty, false);
+    expect(builder.first.validate({'field': 'text'}), isNull);
   });
 }
