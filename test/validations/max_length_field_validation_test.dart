@@ -1,8 +1,7 @@
-import 'package:faker/faker.dart';
-import 'package:test/test.dart';
-
 import 'package:dart_validations/protocols/protocols.dart';
 import 'package:dart_validations/validations/validations.dart';
+import 'package:faker/faker.dart';
+import 'package:test/test.dart';
 
 void main() {
   late MaxLengthFieldValidation sut;
@@ -22,10 +21,21 @@ void main() {
   });
 
   test('Should return null if value is equal than max length', () {
-    expect(sut.validate({'any_field': faker.randomGenerator.string(maxLength, min: maxLength)}), null);
+    expect(
+      sut.validate({
+        'any_field': faker.randomGenerator.string(maxLength, min: maxLength)
+      }),
+      null,
+    );
   });
 
   test('Should return error if value is bigger than max length', () {
-    expect(sut.validate({'any_field': faker.randomGenerator.string(maxLength + 1, min: maxLength + 1)}), ValidationError.invalidField);
+    expect(
+      sut.validate({
+        'any_field':
+            faker.randomGenerator.string(maxLength + 1, min: maxLength + 1)
+      }),
+      ValidationError.invalidField,
+    );
   });
 }

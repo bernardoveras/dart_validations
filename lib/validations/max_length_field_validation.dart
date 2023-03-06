@@ -4,7 +4,8 @@ import '../protocols/protocols.dart';
 import '../validators/validators.dart';
 
 /// Class responsible for validating if the fields exceed a maximum size.
-class MaxLengthFieldValidation extends Equatable implements FieldLengthValidation {
+class MaxLengthFieldValidation extends Equatable
+    implements FieldLengthValidation {
   /// Name of the field to be validated.
   @override
   final String fieldName;
@@ -25,12 +26,13 @@ class MaxLengthFieldValidation extends Equatable implements FieldLengthValidatio
     _maxLengthValidator = MaxLengthValidator(length: length);
   }
 
-  /// Method that validates whether the specified field value is greater than the maximum size.
+  /// Method that validates whether the specified field value
+  /// is greater than the maximum size.
   ///
   /// Returns `null` if the field is valid, or an `error message` otherwise.
   @override
   ValidationError? validate(Map input) {
-    final bool isValid = _maxLengthValidator.validate(input[fieldName]);
+    final isValid = _maxLengthValidator.validate(input[fieldName]);
 
     // Returns an error message if the value is invalid, or null if valid.
     return isValid ? null : ValidationError.invalidField;

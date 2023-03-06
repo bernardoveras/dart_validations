@@ -17,7 +17,7 @@ class RequiredValidator implements Validator<String> {
     // Removes all whitespace from the string.
     final hydratedValue = value?.replaceAll(' ', '');
 
-    final bool isValid = hydratedValue != null && hydratedValue.isNotEmpty;
+    final isValid = hydratedValue != null && hydratedValue.isNotEmpty;
     return isValid;
   }
 }

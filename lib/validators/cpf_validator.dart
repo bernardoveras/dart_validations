@@ -17,7 +17,7 @@ class CpfValidator implements Validator<String> {
   /// Returns true if the value is null or empty or if it is a valid CPF.
   @override
   bool validate(String? value) {
-    final bool isValid = _cpfHelper.validate(value);
+    final isValid = _cpfHelper.validate(value);
 
     return isValid;
   }

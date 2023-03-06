@@ -1,7 +1,6 @@
-import 'package:test/test.dart';
-
 import 'package:dart_validations/protocols/protocols.dart';
 import 'package:dart_validations/validations/validations.dart';
+import 'package:test/test.dart';
 
 void main() {
   late RequiredFieldValidation sut;

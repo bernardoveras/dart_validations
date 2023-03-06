@@ -15,13 +15,13 @@ class CpfCnpjCompoundHelper extends LegalDocumentHelper {
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   int verifierDigit(String document) {
-    final bool isValidCpf = _cpfHelper.validate(document);
+    final isValidCpf = _cpfHelper.validate(document);
 
     if (isValidCpf) {
       return _cpfHelper.verifierDigit(document);
     }
 
-    final bool isValidCnpj = _cnpjHelper.validate(document);
+    final isValidCnpj = _cnpjHelper.validate(document);
 
     if (isValidCnpj) {
       return _cnpjHelper.verifierDigit(document);
@@ -31,9 +31,13 @@ class CpfCnpjCompoundHelper extends LegalDocumentHelper {
   }
 
   @override
-  @Deprecated('To use the CPF or CNPJ generator, use the `generateCpf` and `generateCnpj` methods')
+  @Deprecated(
+    'To use the generator, use the `generateCpf` or `generateCnpj` method',
+  )
   String generate({bool format = false}) {
-    throw AssertionError("To use the CPF or CNPJ generator, use the `generateCpf` and `generateCnpj` methods");
+    throw AssertionError(
+      'To use the generator, use the `generateCpf` or `generateCnpj` method',
+    );
   }
 
   /// Generates a valid CPF.
@@ -46,18 +50,19 @@ class CpfCnpjCompoundHelper extends LegalDocumentHelper {
     return _cnpjHelper.generate(format: format);
   }
 
-  /// Validates if [document] is null or empty and also checks if it complies with the Verifier Digit (or 'Digit Verifier (DV)' in PT-BR).
+  /// Validates if [document] is null or empty and also checks
+  /// if it complies with the Verifier Digit.
   ///
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   bool validate(String? document) {
-    final bool isValidCpf = _cpfHelper.validate(document);
+    final isValidCpf = _cpfHelper.validate(document);
 
     if (isValidCpf == true) {
       return true;
     }
 
-    final bool isValidCnpj = _cnpjHelper.validate(document);
+    final isValidCnpj = _cnpjHelper.validate(document);
 
     return isValidCnpj;
   }

@@ -20,7 +20,8 @@ class MinLengthValidator implements LengthValidator<String> {
     required this.length,
   }) : assert(length > 0, 'O tamanho mínimo deve ser maior que zero.');
 
-  /// Returns `true` if [value] is not null, is not empty, and has a minimum length of [length].
+  /// Returns `true` if [value] is not null, is not empty,
+  /// and has a minimum length of [length].
   ///
   /// Otherwise, it returns `false`.
   @override

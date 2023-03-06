@@ -4,7 +4,8 @@ import '../protocols/protocols.dart';
 import '../validators/validators.dart';
 
 /// Class responsible for validating if the fields have a minimum size.
-class MinLengthFieldValidation extends Equatable implements FieldLengthValidation {
+class MinLengthFieldValidation extends Equatable
+    implements FieldLengthValidation {
   /// Field name to be validated.
   @override
   final String fieldName;
@@ -25,12 +26,13 @@ class MinLengthFieldValidation extends Equatable implements FieldLengthValidatio
     _minLengthValidator = MinLengthValidator(length: length);
   }
 
-  /// Method that validates whether the specified field value is null, empty, or less than the minimum size.
+  /// Method that validates whether the specified field value
+  /// is null, empty, or less than the minimum size.
   ///
   /// Returns `null` if the field is valid, or an `error message` otherwise.
   @override
   ValidationError? validate(Map input) {
-    final bool isValid = _minLengthValidator.validate(input[fieldName]);
+    final isValid = _minLengthValidator.validate(input[fieldName]);
 
     // Returns an error message if the value is invalid, or null if valid.
     return isValid ? null : ValidationError.invalidField;

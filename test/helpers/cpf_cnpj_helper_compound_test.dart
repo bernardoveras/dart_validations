@@ -1,4 +1,4 @@
-import 'package:dart_validations/helpers/cpf_cnpj_helper_compound.dart';
+import 'package:dart_validations/helpers/helpers.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -29,22 +29,22 @@ void main() {
     });
 
     test('Should return false if stripped random CPF is invalid', () {
-      final randomInvalidCpf = '02057227842';
+      const randomInvalidCpf = '02057227842';
       expect(sut.validate(randomInvalidCpf), false);
     });
 
     test('Should return false if formatted random CPF is invalid', () {
-      final randomInvalidCpf = '268.973.295-36';
+      const randomInvalidCpf = '268.973.295-36';
       expect(sut.validate(randomInvalidCpf), false);
     });
 
     test('Should return false if stripped CPF is blacklisted', () {
-      final cpfBlacklisted = '00000000000';
+      const cpfBlacklisted = '00000000000';
       expect(sut.validate(cpfBlacklisted), false);
     });
 
     test('Should return false if formatted CPF is blacklisted', () {
-      final cpfBlacklisted = '000.000.000-00';
+      const cpfBlacklisted = '000.000.000-00';
       expect(sut.validate(cpfBlacklisted), false);
     });
 
@@ -82,22 +82,22 @@ void main() {
     });
 
     test('Should return false if stripped random CNPJ is invalid', () {
-      final randomInvalidCnpj = '23474170000173';
+      const randomInvalidCnpj = '23474170000173';
       expect(sut.validate(randomInvalidCnpj), false);
     });
 
     test('Should return false if formatted random CNPJ is invalid', () {
-      final randomInvalidCnpj = '23.474.170/0001-73';
+      const randomInvalidCnpj = '23.474.170/0001-73';
       expect(sut.validate(randomInvalidCnpj), false);
     });
 
     test('Should return false if stripped CNPJ is blacklisted', () {
-      final cnpjBlacklisted = '00000000000000';
+      const cnpjBlacklisted = '00000000000000';
       expect(sut.validate(cnpjBlacklisted), false);
     });
 
     test('Should return false if formatted CNPJ is blacklisted', () {
-      final cnpjBlacklisted = '00.000.000/0000-00';
+      const cnpjBlacklisted = '00.000.000/0000-00';
       expect(sut.validate(cnpjBlacklisted), false);
     });
 

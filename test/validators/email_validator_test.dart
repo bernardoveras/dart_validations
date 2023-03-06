@@ -1,6 +1,5 @@
-import 'package:test/test.dart';
-
 import 'package:dart_validations/validators/validators.dart';
+import 'package:test/test.dart';
 
 void main() {
   late EmailValidator sut;

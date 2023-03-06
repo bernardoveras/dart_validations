@@ -1,7 +1,6 @@
+import 'package:dart_validations/validators/validators.dart';
 import 'package:faker/faker.dart';
 import 'package:test/test.dart';
-
-import 'package:dart_validations/validators/validators.dart';
 
 void main() {
   late MinLengthValidator sut;
@@ -21,18 +20,25 @@ void main() {
   });
 
   test('Should return false if value is less than min length', () {
-    expect(sut.validate(faker.randomGenerator.string(minLength - 1, min: 1)), false);
+    expect(sut.validate(faker.randomGenerator.string(minLength - 1)), false);
   });
 
   test('Should return true if value is equal than min length', () {
-    expect(sut.validate(faker.randomGenerator.string(minLength, min: minLength)), true);
+    expect(
+      sut.validate(faker.randomGenerator.string(minLength, min: minLength)),
+      true,
+    );
   });
 
   test('Should return true if value is bigger than min length', () {
-    expect(sut.validate(faker.randomGenerator.string(10, min: minLength)), true);
+    expect(
+      sut.validate(faker.randomGenerator.string(10, min: minLength)),
+      true,
+    );
   });
 
-  test('Should throws AssertionError if length is less than or equal to zero', () {
+  test('Should throws AssertionError if length is less than or equal to zero',
+      () {
     expect(() => MinLengthValidator(length: 0), throwsA(isA<AssertionError>()));
   });
 }

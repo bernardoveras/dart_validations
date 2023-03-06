@@ -1,6 +1,5 @@
-import 'package:test/test.dart';
-
 import 'package:dart_validations/validators/validators.dart';
+import 'package:test/test.dart';
 
 void main() {
   late CpfValidator sut;
@@ -19,23 +18,23 @@ void main() {
     expect(sut.validate('864.926.616-99'), true);
   });
 
-   test('Should return false if stripped random CPF is invalid', () {
-    final randomInvalidCpf = '02057227842';
+  test('Should return false if stripped random CPF is invalid', () {
+    const randomInvalidCpf = '02057227842';
     expect(sut.validate(randomInvalidCpf), false);
   });
 
   test('Should return false if formatted random CPF is invalid', () {
-    final randomInvalidCpf = '268.973.295-36';
+    const randomInvalidCpf = '268.973.295-36';
     expect(sut.validate(randomInvalidCpf), false);
   });
 
   test('Should return false if stripped CPF is blacklisted', () {
-    final cpfBlacklisted = '00000000000';
+    const cpfBlacklisted = '00000000000';
     expect(sut.validate(cpfBlacklisted), false);
   });
 
   test('Should return false if formatted CPF is blacklisted', () {
-    final cpfBlacklisted = '000.000.000-00';
+    const cpfBlacklisted = '000.000.000-00';
     expect(sut.validate(cpfBlacklisted), false);
   });
 

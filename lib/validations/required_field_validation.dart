@@ -16,13 +16,14 @@ class RequiredFieldValidation extends Equatable implements FieldValidation {
 
   RequiredFieldValidation(this.fieldName);
 
-  /// Method that validates that the value of the specified field is neither null nor empty.
+  /// Method that validates that the value of the specified field
+  /// is neither null nor empty.
   ///
   /// Returns `null` if the field is valid, or an `error message` otherwise.
   @override
   ValidationError? validate(Map input) {
     // Checks if the field value is null or empty.
-    final bool isValid = _requiredValidator.validate(input[fieldName]);
+    final isValid = _requiredValidator.validate(input[fieldName]);
 
     // Returns an error message if the value is invalid, or null if valid.
     return isValid ? null : ValidationError.requiredField;

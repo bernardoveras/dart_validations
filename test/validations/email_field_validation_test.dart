@@ -1,7 +1,6 @@
-import 'package:test/test.dart';
-
 import 'package:dart_validations/protocols/protocols.dart';
 import 'package:dart_validations/validations/validations.dart';
+import 'package:test/test.dart';
 
 void main() {
   late EmailFieldValidation sut;
@@ -24,6 +23,9 @@ void main() {
   });
 
   test('Should return error message if email is invalid', () {
-    expect(sut.validate({'any_field': 'example'}), ValidationError.invalidField);
+    expect(
+      sut.validate({'any_field': 'example'}),
+      ValidationError.invalidField,
+    );
   });
 }

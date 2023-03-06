@@ -19,7 +19,7 @@ class CnpjHelper extends LegalDocumentHelper {
 
   /// Uses regular expression to format the CNPJ.
   ///
-  /// The [string] must only contain numbers.
+  /// The string must only contain numbers.
   @override
   final RegExp formatRegex = RegExp(r'^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$');
 
@@ -27,7 +27,10 @@ class CnpjHelper extends LegalDocumentHelper {
   ///
   /// The [value] must only contain numbers.
   String _replaceFormatRegex(String value) {
-    return value.replaceAllMapped(formatRegex, (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}');
+    return value.replaceAllMapped(
+      formatRegex,
+      (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}',
+    );
   }
 
   /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
@@ -37,18 +40,19 @@ class CnpjHelper extends LegalDocumentHelper {
   int verifierDigit(String document) {
     var index = 2;
 
-    final reverse = document.split('').map((s) => int.parse(s)).toList().reversed.toList();
+    final reverse =
+        document.split('').map(int.parse).toList().reversed.toList();
 
     var sum = 0;
 
-    for (var number in reverse) {
+    for (final number in reverse) {
       sum += number * index;
-      index = (index == 9 ? 2 : index + 1);
+      index = index == 9 ? 2 : index + 1;
     }
 
     final mod = sum % 11;
 
-    return (mod < 2 ? 0 : 11 - mod);
+    return mod < 2 ? 0 : 11 - mod;
   }
 
   /// Formats the [document] in the pattern: XX.XXX.XXX/XXXX-XX
@@ -66,22 +70,27 @@ class CnpjHelper extends LegalDocumentHelper {
 
   /// Generates a valid CNPJ.
   ///
-  /// If [format] is true, it returns the formatted CNPJ, otherwise, it returns only the numbers.
+  /// If [format] is true, it returns the formatted CNPJ, otherwise,
+  /// it returns only the numbers.
   @override
   String generate({bool format = false}) {
-    var numbers = '';
+    final buffer = StringBuffer();
 
     for (var i = 0; i < 12; i += 1) {
-      numbers += Random().nextInt(9).toString();
+      final nextNumber = Random().nextInt(9).toString();
+      buffer.write(nextNumber);
     }
 
+    var numbers = buffer.toString();
+
     numbers += verifierDigit(numbers).toString();
     numbers += verifierDigit(numbers).toString();
 
-    return (format ? this.format(numbers) : numbers);
+    return format ? this.format(numbers) : numbers;
   }
 
-  /// Validates if [document] is null or empty and also checks if it complies with the Verifier Digit (or 'Digit Verifier (DV)' in PT-BR).
+  /// Validates if [document] is null or empty
+  /// and also checks if it complies with the Verifier Digit.
   ///
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
@@ -111,6 +120,7 @@ class CnpjHelper extends LegalDocumentHelper {
       return false;
     }
 
-    return numbers.substring(numbers.length - 2) == cnpj.substring(cnpj.length - 2);
+    return numbers.substring(numbers.length - 2) ==
+        cnpj.substring(cnpj.length - 2);
   }
 }

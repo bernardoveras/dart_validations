@@ -20,7 +20,7 @@ class CpfHelper extends LegalDocumentHelper {
 
   /// Uses regular expression to format the CPF.
   ///
-  /// The [string] must only contain numbers.
+  /// The string must only contain numbers.
   ///
   /// ```dart
   /// final cpf = '86492661699';
@@ -33,7 +33,10 @@ class CpfHelper extends LegalDocumentHelper {
   ///
   /// The [value] must only contain numbers.
   String _replaceFormatRegex(String value) {
-    return value.replaceAllMapped(formatRegex, (Match m) => '${m[1]}.${m[2]}.${m[3]}-${m[4]}');
+    return value.replaceAllMapped(
+      formatRegex,
+      (Match m) => '${m[1]}.${m[2]}.${m[3]}-${m[4]}',
+    );
   }
 
   /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
@@ -41,7 +44,10 @@ class CpfHelper extends LegalDocumentHelper {
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
   int verifierDigit(String document) {
-    var numbers = document.split('').map((number) => int.parse(number, radix: 10)).toList();
+    final numbers = document
+        .split('')
+        .map((number) => int.parse(number, radix: 10))
+        .toList();
 
     final modulus = numbers.length + 1;
 
@@ -53,7 +59,7 @@ class CpfHelper extends LegalDocumentHelper {
 
     final mod = multiplied.reduce((buffer, number) => buffer + number) % 11;
 
-    return (mod < 2 ? 0 : 11 - mod);
+    return mod < 2 ? 0 : 11 - mod;
   }
 
   /// Formats the [document] in the pattern: XXX.XXX.XXX-XX
@@ -71,22 +77,26 @@ class CpfHelper extends LegalDocumentHelper {
 
   /// Generates a valid CPF.
   ///
-  /// If [format] is true, it returns the formatted CPF, otherwise, it returns only the numbers.
+  /// If [format] is true, it returns the formatted CPF,
+  /// otherwise, it returns only the numbers.
   @override
   String generate({bool format = false}) {
-    var numbers = '';
+    final buffer = StringBuffer();
 
     for (var i = 0; i < 9; i += 1) {
-      numbers += Random().nextInt(9).toString();
+      final nextNumber = Random().nextInt(9).toString();
+      buffer.write(nextNumber);
     }
 
+    var numbers = buffer.toString();
     numbers += verifierDigit(numbers).toString();
     numbers += verifierDigit(numbers).toString();
 
-    return (format ? this.format(numbers) : numbers);
+    return format ? this.format(numbers) : numbers;
   }
 
-  /// Validates if [document] is null or empty and also checks if it complies with the Verifier Digit (or 'Digit Verifier (DV)' in PT-BR).
+  /// Validates if [document] is null or empty and also checks
+  /// if it complies with the Verifier Digit.
   ///
   /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   @override
@@ -116,6 +126,7 @@ class CpfHelper extends LegalDocumentHelper {
       return false;
     }
 
-    return numbers.substring(numbers.length - 2) == cpf.substring(cpf.length - 2);
+    return numbers.substring(numbers.length - 2) ==
+        cpf.substring(cpf.length - 2);
   }
 }

@@ -17,7 +17,7 @@ class CnpjValidator implements Validator<String> {
   /// Returns true if the value is null or empty or if it is a valid CNPJ.
   @override
   bool validate(String? value) {
-    final bool isValid = _cnpjHelper.validate(value);
+    final isValid = _cnpjHelper.validate(value);
 
     return isValid;
   }

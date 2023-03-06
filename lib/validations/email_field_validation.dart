@@ -21,7 +21,7 @@ class EmailFieldValidation extends Equatable implements FieldValidation {
   /// Returns `null` if the field is valid, or an `error message` otherwise.
   @override
   ValidationError? validate(Map input) {
-    final bool isValid = _emailValidator.validate(input[fieldName]);
+    final isValid = _emailValidator.validate(input[fieldName]);
 
     // Returns an error message if the value is invalid, or null if valid.
     return isValid ? null : ValidationError.invalidField;

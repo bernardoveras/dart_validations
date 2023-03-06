@@ -1,7 +1,6 @@
+import 'package:dart_validations/validators/validators.dart';
 import 'package:faker/faker.dart';
 import 'package:test/test.dart';
-
-import 'package:dart_validations/validators/validators.dart';
 
 void main() {
   late MaxLengthValidator sut;
@@ -21,10 +20,18 @@ void main() {
   });
 
   test('Should return true if value is equal than max length', () {
-    expect(sut.validate(faker.randomGenerator.string(maxLength, min: maxLength)), true);
+    expect(
+      sut.validate(faker.randomGenerator.string(maxLength, min: maxLength)),
+      true,
+    );
   });
 
   test('Should return false if value is bigger than max length', () {
-    expect(sut.validate(faker.randomGenerator.string(maxLength + 1, min: maxLength + 1)), false);
+    expect(
+      sut.validate(
+        faker.randomGenerator.string(maxLength + 1, min: maxLength + 1),
+      ),
+      false,
+    );
   });
 }
