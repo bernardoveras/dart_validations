@@ -1,6 +1,19 @@
 import '../protocols/protocols.dart';
 import '../validations/validations.dart';
 
+extension FieldValidationListExtension on List<FieldValidation> {
+  List<ValidationError>? validate(Map input) {
+    final errors = <ValidationError>[];
+    for (final validation in this) {
+      final error = validation.validate(input);
+      if (error != null) {
+        errors.add(error);
+      }
+    }
+    return errors.isEmpty ? null : errors;
+  }
+}
+
 /// Class used to build field validations based on a `fieldName`.
 ///
 /// Example:
@@ -40,6 +53,8 @@ class ValidationBuilder {
 
   /// Adds a minimum length field validation to the validations list.
   ValidationBuilder min(int length) {
+    assert(length > 0, 'length must be greater than zero');
+
     return this
       .._validations
           .add(MinLengthFieldValidation(fieldName: _fieldName, length: length));
@@ -47,6 +62,8 @@ class ValidationBuilder {
 
   /// Adds a maximum length field validation to the validations list.
   ValidationBuilder max(int length) {
+    assert(length > 0, 'length must be greater than zero');
+
     return this
       .._validations
           .add(MaxLengthFieldValidation(fieldName: _fieldName, length: length));
