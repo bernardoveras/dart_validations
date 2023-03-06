@@ -14,7 +14,7 @@ class MinLengthFieldValidation extends Equatable
   @override
   final int length;
 
-  late final MinLengthValidator _minLengthValidator;
+  final MinLengthValidator _minLengthValidator;
 
   @override
   List<Object> get props => [fieldName, length];
@@ -22,9 +22,7 @@ class MinLengthFieldValidation extends Equatable
   MinLengthFieldValidation({
     required this.fieldName,
     required this.length,
-  }) {
-    _minLengthValidator = MinLengthValidator(length: length);
-  }
+  }) : _minLengthValidator = MinLengthValidator(length: length);
 
   /// Method that validates whether the specified field value
   /// is null, empty, or less than the minimum size.
