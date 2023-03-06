@@ -14,7 +14,7 @@ class MaxLengthFieldValidation extends Equatable
   @override
   final int length;
 
-  late final MaxLengthValidator _maxLengthValidator;
+  final MaxLengthValidator _maxLengthValidator;
 
   @override
   List<Object> get props => [fieldName, length];
@@ -22,9 +22,7 @@ class MaxLengthFieldValidation extends Equatable
   MaxLengthFieldValidation({
     required this.fieldName,
     required this.length,
-  }) {
-    _maxLengthValidator = MaxLengthValidator(length: length);
-  }
+  }) : _maxLengthValidator = MaxLengthValidator(length: length);
 
   /// Method that validates whether the specified field value
   /// is greater than the maximum size.
