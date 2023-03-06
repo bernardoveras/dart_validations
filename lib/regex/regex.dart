@@ -1,1 +1,1 @@
-export 'strip_regex.dart';
+export 'only_numbers_regex.dart';

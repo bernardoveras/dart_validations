@@ -10,7 +10,7 @@ abstract class LegalDocumentHelper {
 
   /// Remove all special characteres.
   String? strip(String? document) {
-    return document?.replaceAll(stripRegex, '');
+    return document?.replaceAll(onlyNumbersRegex, '');
   }
 
   int verifierDigit(String document) {
