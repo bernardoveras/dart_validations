@@ -46,4 +46,11 @@ void main() {
       null,
     );
   });
+
+  test('Should throws assert error if length is less than zero', () {
+    expect(
+      () => MinLengthFieldValidation(fieldName: 'field_name', length: 0),
+      throwsA(isA<AssertionError>()),
+    );
+  });
 }

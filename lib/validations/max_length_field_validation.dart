@@ -22,7 +22,8 @@ class MaxLengthFieldValidation extends Equatable
   MaxLengthFieldValidation({
     required this.fieldName,
     required this.length,
-  }) : _maxLengthValidator = MaxLengthValidator(length: length);
+  })  : _maxLengthValidator = MaxLengthValidator(length: length),
+        assert(length > 0, 'length must be greater than zero');
 
   /// Method that validates whether the specified field value
   /// is greater than the maximum size.
